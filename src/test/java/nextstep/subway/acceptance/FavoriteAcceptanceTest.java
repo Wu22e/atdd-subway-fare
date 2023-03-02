@@ -6,11 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static nextstep.subway.acceptance.AuthSteps.베어러_인증_로그인_요청;
 import static nextstep.subway.acceptance.FavoriteSteps.*;
+import static nextstep.subway.acceptance.LineSteps.createSectionCreateParams;
 import static nextstep.subway.acceptance.LineSteps.지하철_노선_생성_요청;
 import static nextstep.subway.acceptance.LineSteps.지하철_노선에_지하철_구간_생성_요청;
 import static nextstep.subway.acceptance.StationSteps.지하철역_생성_요청;
@@ -71,14 +69,5 @@ public class FavoriteAcceptanceTest extends AcceptanceTest {
         ExtractableResponse<Response> deleteResponse = 즐겨찾기_삭제_요청(사용자, createResponse);
         // then
         즐겨찾기_삭제됨(deleteResponse);
-    }
-
-    private Map<String, String> createSectionCreateParams(Long upStationId, Long downStationId, int distance, int duration) {
-        Map<String, String> params = new HashMap<>();
-        params.put("upStationId", upStationId + "");
-        params.put("downStationId", downStationId + "");
-        params.put("distance", distance + "");
-        params.put("duration", duration + "");
-        return params;
     }
 }
