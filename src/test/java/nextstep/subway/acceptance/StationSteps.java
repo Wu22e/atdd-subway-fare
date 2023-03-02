@@ -33,4 +33,20 @@ public class StationSteps {
                 .then().log().all()
                 .extract();
     }
+
+    public static ExtractableResponse<Response> 지하철역_목록_조회_요청() {
+        return RestAssured.given().log().all()
+                .when().get("/stations")
+                .then().log().all()
+                .extract();
+    }
+
+    public static ExtractableResponse<Response> 지하철역_삭제_요청(ExtractableResponse createResponse) {
+        String location = createResponse.header("location");
+        return RestAssured.given().log().all()
+                .when()
+                .delete(location)
+                .then().log().all()
+                .extract();
+    }
 }
